@@ -11,9 +11,7 @@ using namespace std;
 
 std::string enginepath = "start \"DockerDesktop\" \"C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe\"";
 const char* enginepathcc = enginepath.c_str();
-
 std::string imagename = "docker/getting-started";
-
 int timeAfterStart = 30; // In seconds
 // Read all csv values and assign them to variables HERE
 
@@ -38,7 +36,7 @@ std::string exec(const char* cmd) { // stolen from stackoverflow, gets output of
 }
 
 
-int hasDockerStarted()
+int hasDockerStarted() // Check if docker is running
 {
   std::string result = exec("tasklist /FI \"IMAGENAME eq docker.exe\" /FO csv");
   std::string dockerPresence = "docker.exe";
@@ -50,21 +48,17 @@ int hasDockerStarted()
   else
   {
     printf("Docker isn't running! Please wait.\n");
+    _sleep(1000);
     return 0;
   }
 }
 
 void startImage() // Start the image inside docker
 {
-  printf("startImage block is running.\n"); /*
-  const char* imagenamecc = imagename.c_str();
-  std::string dockercmd = "docker run -dp 80:80";
-  const char* dockercmdcc = dockercmd.c_str();
-  const char* cmdimagenamecc = dockercmdcc + imagenamecc;*/
-
+  printf("startImage block is running.\n"); // Log
   std::string dockerCmd = "docker run -dp 80:80 " + imagename;
-  const char* dockerCmdCC = dockerCmd.c_str();
-  system(dockerCmdCC);
+  const char* dockerCmdCC = dockerCmd.c_str(); // str to char*
+  system(dockerCmdCC); // Windows run
 }
 
 void startBrowser() // Start a browser with the container
@@ -83,9 +77,9 @@ int main()
   {
     i = hasDockerStarted();
   }
-  int timeAfterStartS = timeAfterStart * 1000; // convert s to ms
+  int timeAfterStartMS = timeAfterStart * 1000; // convert s to ms
   printf("Waiting for 30 000 ms\n");
-  _sleep(timeAfterStartS);
+  _sleep(timeAfterStartMS);
   printf("Done waiting...\n");
   startImage();
   startBrowser();
