@@ -28,5 +28,6 @@ int main() /* Stop image, once that is done, stop docker.*/
     stopDocker();
     cout << "Stopped the engine\n";
 
+    system("pause");
     return 0;
 } 

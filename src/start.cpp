@@ -136,5 +136,6 @@ int main()
   startImage();
   startBrowser();
   cout << "Done starting the program.";
+  system("pause");
   return 0;
 }
