@@ -7,21 +7,16 @@
 #include <array>
 #include <chrono>
 #include <fstream>
-#include <thread>
 
 using namespace std;
-/*
-std::string enginepath = "DOCKER~2.exe"
-const char* enginepathcc = enginepath.c_str();
-std::string imagename = "docker/getting-started";
-int timeAfterStart = 30; // In seconds
-// Read all csv values and assign them to variables HERE
-*/
 
-std::string imagename;
-std::string enginepath;
-std::string port;
-int timeAfterStart;
+// Values defined in config file
+std::string imagename; // Name of the Docker image
+std::string enginepath; // Directory to the Docker Desktop .exe
+std::string port; // Port to map the container to
+int timeAfterStart; // Time to wait between detection of Docker process and start of the image
+
+const std::string containername = "EduEarth"; // Name of the container
 
 void LoadConfig() // NOTE: in config file, enginepath must be surrounded by quotes.
 {
@@ -56,10 +51,15 @@ void LoadConfig() // NOTE: in config file, enginepath must be surrounded by quot
 void start()
 {
   cout << "Start block is running\n";
-  std::string enginecmd = "start \"\" " + enginepath;
+
+  std::string enginecmd = "start \"\" " 
+  + enginepath;
+
   cout << "enginecmd is: " << enginecmd << "\n";
+
   const char* enginepathcc = enginecmd.c_str();
   system(enginepathcc);
+
   cout << "Starting docker engine\n";
 }
 
@@ -77,7 +77,6 @@ std::string exec(const char* cmd)
     return result;
 }
 
-
 int hasDockerStarted() // Check if docker is running
 {
   std::string result = exec("tasklist /FI \"IMAGENAME eq docker.exe\" /FO csv");
@@ -90,15 +89,23 @@ int hasDockerStarted() // Check if docker is running
   else
   {
     cout << "Docker isn't running! Please wait.\n";
-    this_thread::sleep_for(chrono::seconds(1)); 
+    _sleep(1000); 
     return 0;
   }
 }
 
 void startImage() // Start the image inside docker
 {
-  printf("startImage block is running.\n"); // Log
-  std::string dockerCmd = "docker run -dp " + port + ":80 " + imagename; // Replace 80 by internal container port
+  cout << "startImage block is running.\n";
+  std::string dockerCmd = "docker run -dp " 
+  + port 
+  + ":80 " 
+  + "--name "
+  + containername
+  + " "
+  + imagename; 
+  // Replace 80 by internal container port if it is different.
+
   cout << "Running Command: " << dockerCmd << "\n";
   const char* dockerCmdCC = dockerCmd.c_str(); // str to char*
   system(dockerCmdCC); // Windows run
@@ -124,7 +131,7 @@ int main()
   }
   int timeAfterStartMS = timeAfterStart * 1000; // convert s to ms
   cout << "Waiting for " << timeAfterStart << " seconds.\n";
-  this_thread::sleep_for (chrono::milliseconds(timeAfterStartMS));
+  _sleep(timeAfterStartMS);
   cout << "Done waiting.\n";
   startImage();
   startBrowser();
