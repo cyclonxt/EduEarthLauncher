@@ -23,7 +23,7 @@ std::string enginepath;
 std::string port;
 int timeAfterStart;
 
-void LoadConfig() // NOTE: in config file, enginepath must be surrounded by TWO "".
+void LoadConfig() // NOTE: in config file, enginepath must be surrounded by quotes.
 {
   std::ifstream in("./path.config");
   std::string param;
