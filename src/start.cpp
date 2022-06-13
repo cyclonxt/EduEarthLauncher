@@ -135,7 +135,7 @@ int main()
   cout << "Done waiting.\n";
   startImage();
   startBrowser();
-  cout << "Done starting the program.";
+  cout << "Done starting the program.\n";
   system("pause");
   return 0;
 }
