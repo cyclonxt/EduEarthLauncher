@@ -20,6 +20,12 @@ void stopDocker()
     system(stopCommand.c_str());
 }
 
+void stopWSL()
+{
+	const string stopCommand = "wsl --shutdown";
+	system(stopCommand.c_str());
+}
+
 int main() /* Stop image, once that is done, stop docker.*/
 {
     stopContainer();
@@ -27,6 +33,9 @@ int main() /* Stop image, once that is done, stop docker.*/
 
     stopDocker();
     cout << "Stopped the engine\n";
+
+	stopWSL();
+	cout << "Stopped WSL\n";
 
     system("pause");
     return 0;
