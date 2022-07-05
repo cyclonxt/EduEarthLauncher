@@ -2,9 +2,10 @@
 #include <string> // std::string
 #include <fstream> // in
 #include <iostream> // cout
-#include <array>
-#include <cstdio>
-#include <memory>
+
+#include <array> // exec()
+#include <cstdio> // exec()
+#include <memory> // exec()
 
 using namespace std;
 
