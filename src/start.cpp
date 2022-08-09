@@ -1,4 +1,4 @@
-#include <cstdlib> // system
+#include <cstdlib> // system 
 #include <cstdio>
 #include <iostream>
 #include <memory>
@@ -136,6 +136,5 @@ int main()
   startImage();
   startBrowser();
   cout << "Done starting the program.\n";
-  system("pause");
   return 0;
 }

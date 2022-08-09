@@ -41,6 +41,5 @@ int main() /* Stop image, once that is done, stop docker.*/
 	stopWSL();
 	cout << "Stopped WSL\n";
 
-    system("pause");
     return 0;
 } 
