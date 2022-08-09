@@ -18,6 +18,8 @@
 ## Run program
 
 1. Manually editing config file
+
+
     Config file is located at `/src/path.config`.
     This section is aimed only at administrators.
     

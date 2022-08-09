@@ -12,6 +12,10 @@ void stopContainer()
     const string stopCommand = "docker stop "
     + containername;
     system(stopCommand.c_str());
+
+    const string rmCommand = "docker rm -f "
+    + containername;
+    system(rmCommand.c_str());
 }
 
 void stopDocker()
