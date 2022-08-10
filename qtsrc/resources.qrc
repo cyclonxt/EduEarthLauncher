@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/images/backgrounds">
+        <file>background_planet.png</file>
+        <file>transparent.png</file>
+    </qresource>
+    <qresource prefix="/images/logo">
+        <file>planet_only.png</file>
+    </qresource>
+    <qresource prefix="/images/backgrounds/buttons/top">
+        <file>top_button.png</file>
+        <file>top_button_pressed.png</file>
+    </qresource>
+    <qresource prefix="/images/backgrounds/buttons/bottom">
+        <file>bottom_button.png</file>
+        <file>bottom_button_pressed.png</file>
+    </qresource>
+</RCC>
